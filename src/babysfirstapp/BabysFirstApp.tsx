@@ -1,7 +1,7 @@
 
 // https://restcountries.eu/rest/v2/name/{name}
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView
 } from 'react-native';
@@ -12,8 +12,9 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import { pickBackgroundColor } from './Utils';
+import { pickBackgroundColor, pickEmoji } from './Utils';
 import { Color } from './Constants';
+import EmojiOtus from './EmojiOtus'
 
 import {
   Pressable,
@@ -22,6 +23,7 @@ import {
 
 const BabysFirstApp = () => {
 
+  const [emoji, setEmoji] = useState(pickEmoji());
   const backgroundColor = useSharedValue(pickBackgroundColor());
 
   const changeBackgroundColorStyle = useAnimatedStyle(() => {
@@ -30,10 +32,17 @@ const BabysFirstApp = () => {
     };
   });
 
+  const backgroundClicked = () => {
+    backgroundColor.value = pickBackgroundColor(backgroundColor.value)
+    setEmoji(pickEmoji(emoji));
+  }
+
   return (
     <SafeAreaView>
-      <Pressable onPress={() => backgroundColor.value = pickBackgroundColor(backgroundColor.value)}>
-        <Animated.View style={[styles.background, changeBackgroundColorStyle]} />
+      <Pressable onPress={backgroundClicked}>
+        <Animated.View style={[styles.background, changeBackgroundColorStyle]}>
+          <EmojiOtus emoji={emoji} />
+        </Animated.View>
       </Pressable>
     </SafeAreaView>
   );
