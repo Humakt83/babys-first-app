@@ -1,5 +1,6 @@
-import { BACKGROUND_COLORS } from "./Constants";
+import { BACKGROUND_COLORS, Color } from "./Constants";
 
-export const pickBackgroundColor = () : string => {
-  return BACKGROUND_COLORS[Math.floor(Math.random() * BACKGROUND_COLORS.length)];
+export const pickBackgroundColor = (previousColor: Color = Color.white ) : Color => {
+  const newColor = BACKGROUND_COLORS[Math.floor(Math.random() * Object.keys(Color).length)];
+  return newColor !== previousColor ? newColor : pickBackgroundColor(previousColor);
 }
