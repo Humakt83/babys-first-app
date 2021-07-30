@@ -14,7 +14,7 @@ import Animated, {
 
 import { pickBackgroundColor, pickEmoji } from './Utils';
 import { Color } from './Constants';
-import EmojiOtus from './EmojiOtus'
+import EmojiContainer from './emojis/EmojiContainer';
 
 import {
   Pressable,
@@ -41,7 +41,7 @@ const BabysFirstApp = () => {
     <SafeAreaView>
       <Pressable onPress={backgroundClicked}>
         <Animated.View style={[styles.background, changeBackgroundColorStyle]}>
-          <EmojiOtus emoji={emoji} />
+          <EmojiContainer emoji={emoji} />
         </Animated.View>
       </Pressable>
     </SafeAreaView>
