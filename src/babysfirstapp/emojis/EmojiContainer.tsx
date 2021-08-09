@@ -11,7 +11,6 @@ import {
   View,
   StyleSheet
 } from 'react-native';
-import { GestureResponderEvent } from 'react-native';
 
 type Props = {
   emoji: string
@@ -25,9 +24,7 @@ const EmojiContainer : React.FC<Props> = ({emoji}) => {
     setEmojis([createEmoji(emoji)])
   }, [emoji])
 
-  const quadrupleEmojis = (event: GestureResponderEvent, emoji: Emoji) => {
-    const top = event.nativeEvent.pageY - event.nativeEvent.locationY;
-    const left = event.nativeEvent.pageX - event.nativeEvent.locationX;
+  const quadrupleEmojis = (top: number, left: number, emoji: Emoji) => {
     const newSize: EmojiSize = {fontSize: (emoji.size.fontSize / 2),
                                 rectSize: (emoji.size.rectSize / 2)};
     const newEmojis = [
