@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 type Props = {
-  emoji: string
+  emoji: string,
 }
 
 const EmojiContainer : React.FC<Props> = ({emoji}) => {

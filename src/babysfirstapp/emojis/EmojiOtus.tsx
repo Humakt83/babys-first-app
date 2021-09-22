@@ -20,7 +20,7 @@ import {
 
 type Props = {
   emoji: Emoji,
-  pressFn: Function
+  pressFn: Function,
 }
 
 const randomLocation = (): number => {
@@ -29,21 +29,28 @@ const randomLocation = (): number => {
 
 const EmojiOtus : React.FC<Props> = ({emoji, pressFn}) => {
 
-
+  const rotates = Math.floor(Math.random() * 10) < 3;
+  const fades = Math.floor(Math.random() * 10) < 1
   const direction = {top: randomLocation(), left: randomLocation()}
 
   const positionLeft = useSharedValue(emoji.left);
   const positionTop = useSharedValue(emoji.top);
   const poofDisplay = useSharedValue(0)
+  const rotation = useSharedValue(0);
+  const fading = useSharedValue(0);
 
-  positionLeft.value = withRepeat(withTiming(direction.left, {duration: 2000}), 50, true);
-  positionTop.value = withRepeat(withTiming(direction.top, {duration: 2000}), 50, true);  
+  positionLeft.value = withRepeat(withTiming(direction.left, {duration: 2000}), 100, true);
+  positionTop.value = withRepeat(withTiming(direction.top, {duration: 2000}), 100, true);
+  rotation.value = rotates ? withRepeat(withTiming(360, {duration: 2000}), 100, true) : 0;
+  fading.value = fades ? withRepeat(withTiming(0, {duration: 3000}), 75, true) : 1;
 
-  const animatedStyle = useAnimatedStyle(() => {    
+  const animatedStyle = useAnimatedStyle(() => {
+    const transform = [{ rotateZ: `${rotation.value}deg` }];
     return {
       left: positionLeft.value,
       top: positionTop.value,
-      opacity: 100 - poofDisplay.value
+      opacity: Math.max(0, fading.value - poofDisplay.value),
+      transform,
     }
   })
 
@@ -63,14 +70,14 @@ const EmojiOtus : React.FC<Props> = ({emoji, pressFn}) => {
       zIndex: 5
     },
     emoji: {
-      fontSize: emoji.size.fontSize,
+      fontSize: emoji.size.fontSize
     },
     poof: {
       width: emoji.size.rectSize,
       height: emoji.size.rectSize,
       position: 'absolute',
       zIndex: 10
-    }
+    },
   });
 
   const pressEmoji = (event: GestureResponderEvent) => {    
@@ -85,7 +92,7 @@ const EmojiOtus : React.FC<Props> = ({emoji, pressFn}) => {
     setTimeout(() => {
       poofDisplay.value = 0;
       pressFn(top, left, emoji)
-    }, 400)
+    }, 300)
   }
 
   return (
@@ -95,7 +102,7 @@ const EmojiOtus : React.FC<Props> = ({emoji, pressFn}) => {
           <Text style={[styles.emoji]}>💨</Text>
         </Pressable>
       </Animated.View>
-      <Animated.View style={[styles.emojiContainer, animatedStyle]}>    
+      <Animated.View style={[styles.emojiContainer, animatedStyle]}>
         <Text style={styles.emoji}>{emoji.emoji}</Text>
       </Animated.View>
     </>
