@@ -12,7 +12,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import { pickBackgroundColor, pickEmoji } from './Utils';
+import { pickBackgroundColor, pickEmoji, getSoundNameForEmoji } from './Utils';
 import EmojiContainer from './emojis/EmojiContainer';
 import SoundPlayer from 'react-native-sound-player';
 
@@ -35,11 +35,19 @@ const BabysFirstApp = () => {
 
   const backgroundClicked = () => {
     backgroundColor.value = pickBackgroundColor(backgroundColor.value)
-    setEmoji(pickEmoji(emoji));
-    try {
-      SoundPlayer.playSoundFile('cow', 'mp3');
-    } catch (error) {
-      console.log('Unable to play the sound file', error);
+    const newEmoji = pickEmoji(emoji);
+    setEmoji(newEmoji);
+    playSound(newEmoji);
+  }
+
+  const playSound = (newEmoji: string) => {
+    const sound = getSoundNameForEmoji(newEmoji);
+    if (sound) {
+      try {
+        SoundPlayer.playSoundFile(sound, 'mp3');
+      } catch (error) {
+        console.log('Unable to play the sound file', error);
+      }
     }
   }
 
