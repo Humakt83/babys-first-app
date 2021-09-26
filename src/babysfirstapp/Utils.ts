@@ -1,7 +1,10 @@
-import { BACKGROUND_COLORS, Color, EMOJIS } from "./Constants";
+import { Color, EMOJIS } from "./Constants";
 
-export const pickBackgroundColor = (previousColor: Color = Color.white ) : Color => {
-  const newColor = BACKGROUND_COLORS[Math.floor(Math.random() * Object.keys(Color).length)];
+// Divisor by 2 since compiled javascript has two entries per enum
+const COLOR_AMOUNT = Object.entries(Color).length / 2;
+
+export const pickBackgroundColor = (previousColor: string = Color[Color.white] ) : string => { 
+  const newColor = Color[Math.floor(Math.random() * COLOR_AMOUNT)];
   return newColor !== previousColor ? newColor : pickBackgroundColor(previousColor);
 }
 

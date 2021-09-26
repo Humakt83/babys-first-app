@@ -13,8 +13,8 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { pickBackgroundColor, pickEmoji } from './Utils';
-import { Color } from './Constants';
 import EmojiContainer from './emojis/EmojiContainer';
+import SoundPlayer from 'react-native-sound-player';
 
 import {
   StatusBar,
@@ -29,13 +29,18 @@ const BabysFirstApp = () => {
 
   const changeBackgroundColorStyle = useAnimatedStyle(() => {
     return {
-      backgroundColor: withTiming(Color[backgroundColor.value], { duration: 1000}),
+      backgroundColor: withTiming(backgroundColor.value, { duration: 1000}),
     };
   });
 
   const backgroundClicked = () => {
     backgroundColor.value = pickBackgroundColor(backgroundColor.value)
     setEmoji(pickEmoji(emoji));
+    try {
+      SoundPlayer.playSoundFile('cow', 'mp3');
+    } catch (error) {
+      console.log('Unable to play the sound file', error);
+    }
   }
 
   return (
