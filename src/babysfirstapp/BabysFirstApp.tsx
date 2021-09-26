@@ -17,6 +17,7 @@ import { Color } from './Constants';
 import EmojiContainer from './emojis/EmojiContainer';
 
 import {
+  StatusBar,
   Pressable,
   StyleSheet
 } from 'react-native';
@@ -39,6 +40,7 @@ const BabysFirstApp = () => {
 
   return (
     <SafeAreaView>
+      <StatusBar hidden={true} />
       <Pressable onPress={backgroundClicked}>
         <Animated.View style={[styles.background, changeBackgroundColorStyle]}>
           <EmojiContainer emoji={emoji} />
