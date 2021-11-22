@@ -10,7 +10,7 @@ export type Emoji = {
   size: EmojiSize;
 }
 
-export const createEmoji = (emoji: string, top: number = 100, left: number = 100, 
-  size: EmojiSize = {fontSize: 128, rectSize: 160}): Emoji => {
+export const createEmoji = (emoji: string, top: number = 0, left: number = 0, 
+  size: EmojiSize = {fontSize: 256, rectSize: 320}): Emoji => {
     return {emoji, top, left, size};
 }

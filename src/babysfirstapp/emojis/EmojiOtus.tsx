@@ -24,7 +24,7 @@ type Props = {
 }
 
 const randomLocation = (): number => {
-  return Math.floor(Math.random() * 400);
+  return Math.floor(Math.random() * 300) * (Math.sign(Math.random() -0.5));
 }
 
 const EmojiOtus : React.FC<Props> = ({emoji, pressFn}) => {

@@ -65,6 +65,7 @@ const BabysFirstApp = () => {
 
 const styles = StyleSheet.create({
   background: {
+    position: 'relative',
     width: '100%',
     height: '100%',
   },
