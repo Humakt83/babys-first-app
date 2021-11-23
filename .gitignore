@@ -55,3 +55,4 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 start.command
+android/gradle.properties
