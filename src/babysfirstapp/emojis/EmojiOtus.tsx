@@ -15,23 +15,26 @@ import {
   Pressable,
   Text,
   StyleSheet,
-  GestureResponderEvent
+  GestureResponderEvent,
+  ScaledSize
 } from 'react-native';
 
 type Props = {
   emoji: Emoji,
   pressFn: Function,
+  window: ScaledSize
 }
 
-const randomLocation = (): number => {
-  return Math.floor(Math.random() * 300) * (Math.sign(Math.random() -0.5));
+const randomLocation = (max: number): number => {
+  const randomLocation = Math.floor(Math.random() * max) * (Math.sign(Math.random() -0.5));
+  return Math.max(randomLocation, 0);
 }
 
-const EmojiOtus : React.FC<Props> = ({emoji, pressFn}) => {
+const EmojiOtus : React.FC<Props> = ({emoji, pressFn, window}) => {
 
   const rotates = Math.floor(Math.random() * 10) < 3;
   const fades = Math.floor(Math.random() * 10) < 1
-  const direction = {top: randomLocation(), left: randomLocation()}
+  const direction = {top: randomLocation(window.height), left: randomLocation(window.width)}
 
   const positionLeft = useSharedValue(emoji.left);
   const positionTop = useSharedValue(emoji.top);

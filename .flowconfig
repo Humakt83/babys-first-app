@@ -29,8 +29,7 @@ node_modules/react-native/flow-github/
 [options]
 emoji=true
 
-esproposal.optional_chaining=enable
-esproposal.nullish_coalescing=enable
+format.bracket_spacing=false
 
 module.system=haste
 module.system.haste.use_name_reducers=true
@@ -67,4 +66,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 [version]
-^0.86.0
+^0.158.0
