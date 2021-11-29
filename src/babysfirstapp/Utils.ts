@@ -51,7 +51,24 @@ export const getSoundNameForEmoji = (emoji: string) : string|undefined => {
       return 'tiger';
     case '🐺':
       return 'wolf';
+    case '🏍':
+      return 'motorcycle';
+    case '🐝':
+      return 'bee';
+    case '🐔':
+      return 'chicken';
+    case '🐦':
+      return 'songbird';
+    case '🦁':
+      return 'lion';
+    case '🐑':
+      return 'sheep';
+    case '🐷':
+      return 'pig';
+    case '🐵':
+    case '🦍':
+      return 'monkey';
     default:
-      return undefined;
+      return;
   }
 }
