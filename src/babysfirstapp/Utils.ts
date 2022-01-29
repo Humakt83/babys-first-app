@@ -15,9 +15,11 @@ export const pickEmoji = (previousEmoji: string = '') : string => {
 
 export const getSoundNameForEmoji = (emoji: string) : string|undefined => {
   switch (emoji) {
-    case '🐄': 
+    case '🐄':
+    case '🐂':
       return 'cow';
     case '🐴':
+    case '🦓':
       return 'horse';
     case '😃':
     case '😁':
@@ -25,13 +27,23 @@ export const getSoundNameForEmoji = (emoji: string) : string|undefined => {
     case '😍':
     case '😜':
     case '😏':
+    case '🤩':
+    case '🤗':
+    case '🥳':
+    case '🤓':
       return 'laugh';
     case '🐳':
+    case '🐋':
+    case '🦈':
     case '🐬':
     case '🐟':
     case '🐡':
     case '🐠':
     case '🐙':
+    case '🐚':
+    case '🦞':
+    case '🦐':
+    case '🦑':
       return 'water';
     case '🚢':
       return 'ship';
@@ -62,8 +74,10 @@ export const getSoundNameForEmoji = (emoji: string) : string|undefined => {
     case '🦁':
       return 'lion';
     case '🐑':
+    case '🐏':
       return 'sheep';
     case '🐷':
+    case '🐗':
       return 'pig';
     case '🐵':
     case '🦍':

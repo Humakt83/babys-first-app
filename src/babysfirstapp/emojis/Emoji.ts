@@ -11,6 +11,6 @@ export type Emoji = {
 }
 
 export const createEmoji = (emoji: string, top: number = 0, left: number = 0, 
-  size: EmojiSize = {fontSize: 256, rectSize: 320}): Emoji => {
+  size: EmojiSize = {fontSize: 200, rectSize: 300}): Emoji => {
     return {emoji, top, left, size};
 }
